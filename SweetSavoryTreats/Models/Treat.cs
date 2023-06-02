@@ -15,6 +15,7 @@ namespace SweetSavoryTreats.Models
 
     public List<TreatFlavor> JoinEntities { get; set; }
 
+    public List<OrderTreat> OTJoinEntities { get; set; }   
     public ApplicationUser User { get; set; } 
   }
 }

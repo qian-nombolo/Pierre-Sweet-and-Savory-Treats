@@ -10,6 +10,8 @@ namespace SweetSavoryTreats.Models
     public DbSet<Flavor> Flavors { get; set; }
     public DbSet<TreatFlavor> TreatFlavors { get; set; }
     
+    public DbSet<OrderTreat> OrderTreats { get; set; }
+
     public SweetSavoryTreatsContext(DbContextOptions options) : base(options) { }
   }
 }
