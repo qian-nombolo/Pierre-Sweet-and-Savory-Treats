@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SweetSavoryTreats.Models;
 using System.Collections.Generic;
 using System.Linq;
+
 using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Identity;
@@ -171,7 +172,7 @@ namespace SweetSavoryTreats.Controllers
 
       TreatFlavor joinEntry = _db.TreatFlavors.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
       Treat thisTreat = _db.Treats.FirstOrDefault(entry => entry.TreatId == joinEntry.TreatId);
-      
+
       if (thisTreat.User == currentUser)
       {
         _db.TreatFlavors.Remove(joinEntry);

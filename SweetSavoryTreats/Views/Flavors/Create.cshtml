@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetSavoryTreats.Models.Flavor
+
+<h4>Add a new flavor</h4>
+
+<p>@Html.ValidationMessageFor(m => m.FlavorName,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.FlavorName)
+    @Html.TextBoxFor(model => model.FlavorName)
+
+    <input type="submit" value="Add new flavor" class="btn btn-primary" />
+}
+
+<p>@Html.ActionLink("Show all flavors", "Index")</p>

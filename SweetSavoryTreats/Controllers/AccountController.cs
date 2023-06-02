@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using SweetSavoryTreats.Models;
 using System.Threading.Tasks;
-using FantacyRecipe.ViewModels;
+using SweetSavoryTreats.ViewModels;
 
 namespace SweetSavoryTreats.Controllers
 {

@@ -28,7 +28,7 @@ namespace SweetSavoryTreats.Controllers
         Flavor[] flavors = _db.Flavors.OrderBy(flavor  => flavor.FlavorName).ToArray();
         Dictionary<string,object[]> model = new Dictionary<string, object[]>();
                 
-        model.Add("recipes", treats);
+        model.Add("treats", treats);
         model.Add("flavors", flavors);
                 
         return View(model);
