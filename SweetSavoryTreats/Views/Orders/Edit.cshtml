@@ -6,6 +6,9 @@
 
 <h4>Edit this Order: @Html.DisplayFor(m => m.OrderContent)</h4>
 
+  <p>@Html.ValidationMessageFor(m=>m.OrderContent,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+  <p>@Html.ValidationMessageFor(m=>m.OrderAmount,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(m => m.OrderId)

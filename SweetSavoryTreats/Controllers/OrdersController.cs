@@ -20,7 +20,7 @@ namespace SweetSavoryTreats.Controllers
     private readonly SweetSavoryTreatsContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public TreatsController(UserManager<ApplicationUser> userManager, SweetSavoryTreatsContext db)
+    public OrdersController(UserManager<ApplicationUser> userManager, SweetSavoryTreatsContext db)
     {
       _userManager = userManager;
       _db = db;
@@ -86,14 +86,22 @@ namespace SweetSavoryTreats.Controllers
       {
         return RedirectToAction("Index");
       }
+
     }
 
     [HttpPost]
-    public ActionResult Edit(Order order)
+    public async Task<ActionResult> Edit(Order order)
     {
-      _db.Orders.Update(order);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      if (!ModelState.IsValid)
+      {
+        return View(order);
+      }
+      else
+      {
+        _db.Orders.Update(order);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
     }
 
     public async Task<ActionResult> Delete(int id)
