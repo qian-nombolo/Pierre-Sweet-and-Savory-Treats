@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetSavoryTreats.Models.Treat
+
+<h4>Edit this Treat: @Html.DisplayFor(m => m.TreatName)</h4>
+
+<p>@Html.ValidationMessageFor(m => m.TreatName,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(m => m.TreatId)
+
+  <p>Treat Name: @Html.EditorFor(model => model.TreatName)</p>
+  <p>Treat Rating: @Html.EditorFor(model => model.TreatRate)</p>
+  <p>Treat Ingredients: @Html.EditorFor(model => model.TreatIngredient)</p>
+ 
+  <input type="submit" value="Save Changes" class="btn btn-default" />
+}
+
+<p>@Html.ActionLink("Back to treats","Index")<p>

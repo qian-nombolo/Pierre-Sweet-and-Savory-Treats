@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetSavoryTreats.Models.Treat
+
+<h4>Add a new treat</h4>
+
+<p>@Html.ValidationMessageFor(m=>m.TreatName,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+<p>@Html.ValidationMessageFor(m=>m.TreatRate,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+
+@using (Html.BeginForm())
+{
+  <p>Treat Name: @Html.TextBoxFor(model => model.TreatName)</p>
+  <p>Treat Rating: @Html.TextBoxFor(model => model.TreatRate)</p>
+  <p>Treat Ingredients: @Html.TextBoxFor(model => model.TreatIngredient)</p>
+
+  <input type="submit" value="Add new treat" class="btn btn-default" />
+}
+
+<p>@Html.ActionLink("Show all treats", "Index")</p>

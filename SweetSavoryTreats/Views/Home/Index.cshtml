@@ -1,0 +1,43 @@
+@{
+  Layout = "_Layout";
+}
+
+@using SweetSavoryTreats.Models;
+
+<h1 id="header">Welcome to the Pierre's Sweet and Savory Treats!</h1>
+<hr>
+  
+  @if (Model["treats"].Length == 0)
+  {
+    <p>No treats have been added yet!</p>
+  } 
+  <ul>
+    @foreach (Treat treat in Model["treats"])
+    {
+      <li>@Html.ActionLink(@treat.TreatName, "Details", "Treats", new { id = @treat.TreatId}) | @treat.TreatRate ☆</li>
+    }
+    
+  <h4>Flavors</h4>
+  @if (Model["flavors"].Length == 0)
+  {
+    <p>No flavors have been added yet!</p>
+  } 
+  <ul>
+    @foreach (Flavor flavor in Model["flavors"])
+    {
+      <li>@Html.ActionLink(@flavor.FlavorName, "Details", "Flavors", new { id = @flavor.FlavorId})</li>
+    }
+  </ul>
+
+<hr>
+@if (User.Identity.IsAuthenticated)
+{
+  <p>Hello @User.Identity.Name!</p>
+  <p>@Html.ActionLink("View my treats", "MyTreats", "Treats")</p>
+  <p>@Html.ActionLink("View my flavors", "MyFlavors","Flavors")</p>
+}
+
+<p>@Html.ActionLink("Manage treats", "Index", "Treats")</p> 
+<p>@Html.ActionLink("Manage flavors", "Index", "Flavors")</p>
+<p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
+

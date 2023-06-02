@@ -1,0 +1,46 @@
+@{
+  Layout = "_Layout";
+}
+
+@using SweetSavoryTreats.Models
+@model SweetSavoryTreats.Models.Treat
+
+<h2>Treat Details</h2>
+<hr />
+<h3>Treat Name: @Html.DisplayFor(model => model.TreatName)</h3>
+
+<p>Treat Rating: @Html.DisplayFor(model => model.TreatRate)</p>
+<p>Ingredients: @Html.DisplayFor(model => model.TreatIngredient)</p>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This treat does not have any flavors.</p>
+}
+else
+{
+  <h4>Flavors the treat has:</h4>
+  <ul>
+  @foreach(TreatFlavor join in Model.JoinEntities)
+  {
+    <li>@join.Flavor.FlavorName</li>
+
+    @using (Html.BeginForm("DeleteJoin", "Treats"))
+    {
+      @Html.Hidden("joinId", @join.TreatFlavorId)
+      @if (User.Identity.IsAuthenticated)
+      {
+        <input type="submit" value="Remove"/>
+      }
+    }
+    
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+
+<p>@Html.ActionLink("Add a Flavor", "AddFlavor", new { id = Model.TreatId })</p>
+
+<p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })</p>
+
+<p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
