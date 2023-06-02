@@ -14,7 +14,7 @@ namespace SweetSavoryTreats.ViewModels
 
     // experiment
     // [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$", ErrorMessage = "Your password must contain at least six characters.")]
-    [RegularExpression("^(?=.*[a-z])[a-z\\d@$!%*?&]{2,}$", ErrorMessage = "Your password must contain at least one lower-case letter.")]
+    [RegularExpression("^(?=.*[a-z])[A-Za-z\\d@$!%*?&]{2,}$", ErrorMessage = "Your password must contain at least one lower-case letter.")]
     public string Password { get; set; }
 
     [Required]
