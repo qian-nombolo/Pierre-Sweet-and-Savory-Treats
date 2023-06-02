@@ -6,7 +6,8 @@
 
 <h4>Edit this Treat: @Html.DisplayFor(m => m.TreatName)</h4>
 
-<p>@Html.ValidationMessageFor(m => m.TreatName,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+<p>@Html.ValidationMessageFor(m=>m.TreatName,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+<p>@Html.ValidationMessageFor(m=>m.TreatRate,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
 
 @using (Html.BeginForm())
 {

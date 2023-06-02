@@ -17,7 +17,8 @@
 ## Description
 
 * A user should be able to log in and log out. Only logged in users have create, update, and delete functionality. All users are able to have read functionality. 
-* A user should be able to navigate to a splash page that lists all treats and flavors. Users are able to click on an individual treat or flavor to see all the treats/flavors that belong to it.
+* A user should be able to navigate to a splash page that lists all treats and flavors. All users are able to click on an individual treat or flavor to see all the treats/flavors that belong to it.
+* A logged-in user is able to create, read, update and delete their own order.
 
 ## Setup/Installation Requirements
 

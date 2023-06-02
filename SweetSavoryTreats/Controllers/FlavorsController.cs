@@ -88,6 +88,7 @@ namespace SweetSavoryTreats.Controllers
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
+      // flavor should only match the user's treats
       List<Treat> userTreats = _db.Treats
                                 .Where(e => e.User.Id == currentUser.Id)
                                 .OrderBy(treat => treat.TreatRate)
@@ -133,9 +134,16 @@ namespace SweetSavoryTreats.Controllers
     [HttpPost]
     public ActionResult Edit(Flavor flavor)
     {
-      _db.Flavors.Update(flavor);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      if (!ModelState.IsValid)
+      {
+        return View(flavor);
+      }
+      else
+      {
+        _db.Flavors.Update(flavor);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
     }
 
     public async Task<ActionResult> Delete(int id)

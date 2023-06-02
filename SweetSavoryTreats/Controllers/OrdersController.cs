@@ -86,11 +86,10 @@ namespace SweetSavoryTreats.Controllers
       {
         return RedirectToAction("Index");
       }
-
     }
 
     [HttpPost]
-    public async Task<ActionResult> Edit(Order order)
+    public ActionResult Edit(Order order)
     {
       if (!ModelState.IsValid)
       {
@@ -135,14 +134,14 @@ namespace SweetSavoryTreats.Controllers
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
-      List<Treat> userTreats = _db.Treats
-                                .Where(entry => entry.User.Id == currentUser.Id)
+      // order should have all the treat to choose
+      List<Treat> allTreats = _db.Treats
                                 .OrderBy(treat => treat.TreatName)
                                 .ToList();
 
       Order thisOrder = _db.Orders.FirstOrDefault(order=> order.OrderId == id);
       
-      ViewBag.TreatId = new SelectList(userTreats, "TreatId", "TreatName");
+      ViewBag.TreatId = new SelectList(allTreats, "TreatId", "TreatName");
       
       return View(thisOrder);
     }

@@ -100,9 +100,16 @@ namespace SweetSavoryTreats.Controllers
     [HttpPost]
     public ActionResult Edit(Treat treat)
     {
-      _db.Treats.Update(treat);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      if (!ModelState.IsValid)
+      {
+        return View(treat);
+      }
+      else
+      {
+        _db.Treats.Update(treat);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
     }
 
     public async Task<ActionResult> Delete(int id)
@@ -136,14 +143,13 @@ namespace SweetSavoryTreats.Controllers
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
-      List<Flavor> userFlavors = _db.Flavors
-                                .Where(entry => entry.User.Id == currentUser.Id)
+      List<Flavor> alllavors = _db.Flavors
                                 .OrderBy(flavor => flavor.FlavorName)
                                 .ToList();
 
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
       
-      ViewBag.FlavorId = new SelectList(userFlavors, "FlavorId", "FlavorName");
+      ViewBag.FlavorId = new SelectList(allFlavors, "FlavorId", "FlavorName");
       
       return View(thisTreat);
     }
