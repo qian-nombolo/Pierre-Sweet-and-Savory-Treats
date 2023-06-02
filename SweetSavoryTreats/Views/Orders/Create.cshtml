@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetSavoryTreats.Models.Order
+
+<h4>Add a new order</h4>
+
+<p>@Html.ValidationMessageFor(m=>m.OrderContent,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+<p>@Html.ValidationMessageFor(m=>m.OrderAmount,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+
+@using (Html.BeginForm())
+{
+  <p>Order Content: @Html.TextBoxFor(model => model.OrderContent)</p>
+  <p>Order Amount: @Html.TextBoxFor(model => model.OrderAmount)</p>
+  <p>Order Description: @Html.TextBoxFor(model => model.OrderDescription)</p>
+
+  <input type="submit" value="Add new order" class="btn btn-default" />
+}
+
+<p>@Html.ActionLink("Show all orders", "Index")</p>

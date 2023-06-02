@@ -17,7 +17,8 @@
     {
       <li>@Html.ActionLink(@treat.TreatName, "Details", "Treats", new { id = @treat.TreatId}) | @treat.TreatRate ☆</li>
     }
-    
+  </ul>  
+
   <h4>Flavors</h4>
   @if (Model["flavors"].Length == 0)
   {
@@ -34,6 +35,9 @@
 @if (User.Identity.IsAuthenticated)
 {
   <p>Hello @User.Identity.Name!</p>
+
+  <p>@Html.ActionLink("View my orders", "Index", "Orders")</p>
+
   <p>@Html.ActionLink("View my treats", "MyTreats", "Treats")</p>
   <p>@Html.ActionLink("View my flavors", "MyFlavors","Flavors")</p>
 }

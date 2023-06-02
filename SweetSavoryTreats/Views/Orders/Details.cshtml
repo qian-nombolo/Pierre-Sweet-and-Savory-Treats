@@ -1,0 +1,46 @@
+@{
+  Layout = "_Layout";
+}
+
+@using SweetSavoryTreats.Models
+@model SweetSavoryTreats.Models.Order
+
+<h2>Order Details</h2>
+<hr />
+
+<p>Order Content: @Html.TextBoxFor(model => model.OrderContent)</p>
+<p>Order Amount: @Html.TextBoxFor(model => model.OrderAmount)</p>
+<p>Order Description: @Html.TextBoxFor(model => model.OrderDescription)</p>
+
+@if(@Model.OTJoinEntities.Count == 0)
+{
+  <p>This order does not have any treats.</p>
+}
+else
+{
+  <h4>Treats the order has:</h4>
+  <ul>
+  @foreach(OrderTreat join in Model.OTJoinEntities)
+  {
+    <li>@join.Treat.TreatName</li>
+
+    @using (Html.BeginForm("DeleteJoin", "Orders"))
+    {
+      @Html.Hidden("otjoinId", @join.OrderTreatId)
+      @if (User.Identity.IsAuthenticated)
+      {
+        <input type="submit" value="Remove"/>
+      }
+    }
+    
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+
+<p>@Html.ActionLink("Add a Treat", "AddTreat", new { id = Model.OrderId })</p>
+
+<p>@Html.ActionLink("Edit Order", "Edit", new { id = Model.OrderId })</p>
+
+<p>@Html.ActionLink("Delete Order", "Delete", new { id = Model.OrderId })</p>
