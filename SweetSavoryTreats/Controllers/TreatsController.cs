@@ -17,7 +17,6 @@ namespace SweetSavoryTreats.Controllers
 
   public class TreatsController : Controller
   {
-    [Authorize(Roles = "Manager")]
     
     private readonly SweetSavoryTreatsContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
@@ -145,7 +144,7 @@ namespace SweetSavoryTreats.Controllers
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
-      List<Flavor> alllavors = _db.Flavors
+      List<Flavor> allFlavors = _db.Flavors
                                 .OrderBy(flavor => flavor.FlavorName)
                                 .ToList();
 
