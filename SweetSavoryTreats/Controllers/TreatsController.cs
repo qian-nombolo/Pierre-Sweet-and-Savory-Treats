@@ -17,6 +17,8 @@ namespace SweetSavoryTreats.Controllers
 
   public class TreatsController : Controller
   {
+    [Authorize(Roles = "Manager")]
+    
     private readonly SweetSavoryTreatsContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 

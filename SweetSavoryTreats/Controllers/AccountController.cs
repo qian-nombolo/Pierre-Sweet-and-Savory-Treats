@@ -6,6 +6,7 @@ using SweetSavoryTreats.ViewModels;
 
 namespace SweetSavoryTreats.Controllers
 {
+  // [Authorize]
   public class AccountController : Controller
   {
     private readonly SweetSavoryTreatsContext _db;
@@ -89,6 +90,11 @@ namespace SweetSavoryTreats.Controllers
       await _signInManager.SignOutAsync();
       return RedirectToAction("Index");
     }
+
+    // public IActionResult AccessDenied()
+    // {
+    //     return View();
+    // }
     
   }
 }
