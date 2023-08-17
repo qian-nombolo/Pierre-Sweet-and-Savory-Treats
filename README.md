@@ -20,6 +20,11 @@
 * A user should be able to navigate to a splash page that lists all treats and flavors. All users are able to click on an individual treat or flavor to see all the treats/flavors that belong to it.
 * A logged-in user is able to create, read, update and delete their own order.
 
+## 🌻 Website Screenshot
+
+* Website Example
+![Screenshot of website](./SweetSavoryTreats/wwwroot/shop.png)
+
 ## Setup/Installation Requirements
 
 * _Clone “Pierre-Sweet-and-Savory-Treats
